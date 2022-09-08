@@ -1,10 +1,9 @@
 <table class="mytable">
 <thead>
-  <tr>
-    
-    <th (click)="onSortClick($event)" scope="col">Product Name<i (click)="onSortClick($event)" class="my-icon fa fa-chevron-up"></i></th>
-    <th scope="col">Price</th>
-    <th scope="col">Category</th>
+  <tr> 
+    <th (click)="onSortClick($event)" id=" data"scope="col">Product Name<i (click)="onSortClick($event)" class="my-icon fa fa-chevron-up"></i></th>
+    <th scope="col" (click)="onSortClick($event)">Price</th>
+    <th scope="col" (click)="onSortClick($event)">Category</th>
   </tr>
 </thead>
 <tbody>

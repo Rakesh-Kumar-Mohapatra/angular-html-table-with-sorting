@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, OnDestroy, OnInit, VERSION } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CookiesService } from './services/cookies.service';
 
@@ -7,7 +7,7 @@ import { CookiesService } from './services/cookies.service';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent implements OnInit, OnDestroy {
   columnDefs: any[] = [];
   rowData: any[] = [];
   users: any;
@@ -16,6 +16,9 @@ export class AppComponent  {
 
 
   constructor(private api: CookiesService) {}
+ngOnDestroy(): void {
+throw new Error('Method not implemented.');
+}
 
   ngOnInit(): void {
     this.cookiesData = this.api.get().subscribe((res) => {
@@ -25,11 +28,12 @@ export class AppComponent  {
     });
   }
   onSortClick(event) {
-    let target = event.currentTarget,
-      classList = target.classList;
-    console.log("sortclick", target);
-
-    if (classList.contains('fa-chevron-up')) {
+    let target = event.currentTarget;
+    let classList = target.classList;
+    let t = event;
+    let id = target.innerHTML.split("<i")[0];
+    console.log("sortclick", target.innerHTML.split("<i")[0]);
+    if (classList.contains('fa fa-chevron-up')) {
       classList.remove('fa-chevron-up');
       classList.add('fa-chevron-down');
       this.sortDir=-1;
@@ -38,9 +42,17 @@ export class AppComponent  {
       classList.remove('fa-chevron-down');
       this.sortDir=1;
     }
-    this.sortArr('name');
+    if(id == "Product Name") {
+      console.log("sortclick", target.innerHTML.split("<i")[0]);
+      this.sortArr('name');
+    } else if(id == "Price") {
+      console.log("sortclick", target.innerHTML.split("<i")[0]);
+      this.sortArr('price');
+    } else if(id == "Category") {
+      console.log("sortclick", target.innerHTML.split("<i")[0]);
+      this.sortArr('category');
+    }
   }
-
   sortArr(colName:any){
     this.users.sort((a,b)=>{
       a= a[colName].toLowerCase();
@@ -48,7 +60,6 @@ export class AppComponent  {
       return a.localeCompare(b) * this.sortDir;
     });
   }
-
   ngOnDestory(){
     this.cookiesData.unsubscribe();
   }
