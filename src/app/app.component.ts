@@ -25,11 +25,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   onSortClick(event) {
     let target = event.currentTarget;
-    let classList = target.classList;
-    let t = event;
     let id = target.innerHTML.split('<i')[0];
-    console.log('sortclick', target);
-    if (classList.contains('fa fa-chevron-up')) {
+    let classList = document.getElementById("myDIV").classList;
+    console.log(target);
+    if (classList.contains('fa-chevron-up')) {
       classList.remove('fa-chevron-up');
       classList.add('fa-chevron-down');
       this.sortDir = -1;
@@ -38,18 +37,19 @@ export class AppComponent implements OnInit, OnDestroy {
       classList.remove('fa-chevron-down');
       this.sortDir = 1;
     }
-    if (id == 'Product Name') {
+    if (id == ' Product Name') {
       console.log('sortclick', target.innerHTML.split('<i')[0]);
       this.sortArr('name');
-    } else if (id == 'Price') {
+    } else if (id == ' Price') {
       console.log('sortclick', target.innerHTML.split('<i')[0]);
       this.sortArr('price');
-    } else if (id == 'Category') {
+    } else if (id == ' Category') {
       console.log('sortclick', target.innerHTML.split('<i')[0]);
       this.sortArr('category');
     }
   }
   sortArr(colName: any) {
+    console.log("id");
     this.users.sort((a, b) => {
       a = a[colName].toLowerCase();
       b = b[colName].toLowerCase();

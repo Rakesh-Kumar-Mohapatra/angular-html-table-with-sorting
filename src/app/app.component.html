@@ -1,16 +1,22 @@
 <table class="mytable">
-<thead>
-  <tr> 
-    <th (click)="onSortClick($event)" id=" data"scope="col">Product Name<i class="my-icon fa fa-chevron-up"></i></th>
-    <th scope="col" (click)="onSortClick($event)"><i class="my-icon fa fa-chevron-up"></i>Price</th>
-    <th scope="col" (click)="onSortClick($event)"><i  class="my-icon fa fa-chevron-up"></i>Category</th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let obj of users; let i=index;">
-    <td>{{obj.name}}</td>
-    <td>{{obj.price}}</td>
-    <td>{{obj.category}}</td>
-  </tr>
-</tbody>
+  <thead>
+    <tr>
+      <th scope="col" (click)="onSortClick($event)">
+        Product Name<i id="myDIV" class="my-icon fa fa-chevron-up"></i>
+      </th>
+      <th scope="col" (click)="onSortClick($event)">
+        Price<i id="myDIV" class="my-icon fa fa-chevron-up"></i>
+      </th>
+      <th scope="col" (click)="onSortClick($event)">
+        Category<i id="myDIV" class="my-icon fa fa-chevron-up"></i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let obj of users; let i = index">
+      <td>{{ obj.name }}</td>
+      <td>{{ obj.price }}</td>
+      <td>{{ obj.category }}</td>
+    </tr>
+  </tbody>
 </table>
