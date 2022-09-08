@@ -26,8 +26,19 @@ export class AppComponent implements OnInit, OnDestroy {
   onSortClick(event) {
     let target = event.currentTarget;
     let id = target.innerHTML.split('<i')[0];
-    let classList = document.getElementById("myDIV").classList;
-    console.log(target);
+    let classList;
+    let eachid = target.innerHTML.split('id="')[1];
+    console.log(classList);
+    console.log("vhgvh", eachid);
+    if(eachid.toString().startsWith("nameid")){
+      console.log("rtttt",eachid);
+      classList = document.getElementById("nameid").classList;
+    } else if(eachid.toString().startsWith("priceid")){
+      classList = document.getElementById("priceid").classList;
+    } else if(eachid.toString().startsWith("categoryid")){
+      classList = document.getElementById("categoryid").classList;
+    }
+    console.log("fhfh", eachid);
     if (classList.contains('fa-chevron-up')) {
       classList.remove('fa-chevron-up');
       classList.add('fa-chevron-down');
