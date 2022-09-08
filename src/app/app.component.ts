@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     let classList = target.classList;
     let t = event;
     let id = target.innerHTML.split('<i')[0];
-    console.log('sortclick', target.innerHTML.split('<i')[0]);
+    console.log('sortclick', target);
     if (classList.contains('fa fa-chevron-up')) {
       classList.remove('fa-chevron-up');
       classList.add('fa-chevron-down');
