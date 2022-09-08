@@ -8,65 +8,58 @@ import { CookiesService } from './services/cookies.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  columnDefs: any[] = [];
-  rowData: any[] = [];
-  users: any;
+  users: any[] = [];
   cookiesData: Subscription;
-  sortDir = 1; //1= 'ASE' -1= DSC
+  sortDirection = 1;
 
   constructor(private api: CookiesService) {}
 
   ngOnInit(): void {
     this.cookiesData = this.api.get().subscribe((res) => {
-      this.users = res;
-      this.users = this.users.cookies;
-      console.log('data response', this.users);
+      this.users = res.cookies;
     });
   }
+
   onSortClick(event) {
     let target = event.currentTarget;
     let id = target.innerHTML.split('<i')[0];
     let classList;
-    let eachid = target.innerHTML.split('id="')[1];
-    console.log(classList);
-    console.log("vhgvh", eachid);
-    if(eachid.toString().startsWith("nameid")){
-      console.log("rtttt",eachid);
+    let eachidFromIcon = target.innerHTML.split('id="')[1];
+    if(eachidFromIcon.toString().startsWith("nameid")){
       classList = document.getElementById("nameid").classList;
-    } else if(eachid.toString().startsWith("priceid")){
+    } else if(eachidFromIcon.toString().startsWith("priceid")){
       classList = document.getElementById("priceid").classList;
-    } else if(eachid.toString().startsWith("categoryid")){
+    } else if(eachidFromIcon.toString().startsWith("categoryid")){
       classList = document.getElementById("categoryid").classList;
     }
-    console.log("fhfh", eachid);
+    console.log("fhfh", eachidFromIcon);
     if (classList.contains('fa-chevron-up')) {
       classList.remove('fa-chevron-up');
       classList.add('fa-chevron-down');
-      this.sortDir = -1;
+      this.sortDirection = -1;
     } else {
       classList.add('fa-chevron-up');
       classList.remove('fa-chevron-down');
-      this.sortDir = 1;
+      this.sortDirection = 1;
     }
     if (id == ' Product Name') {
-      console.log('sortclick', target.innerHTML.split('<i')[0]);
-      this.sortArr('name');
+      this.SortTableByColumnName('name');
     } else if (id == ' Price') {
-      console.log('sortclick', target.innerHTML.split('<i')[0]);
-      this.sortArr('price');
+      this.SortTableByColumnName('price');
     } else if (id == ' Category') {
-      console.log('sortclick', target.innerHTML.split('<i')[0]);
-      this.sortArr('category');
+      this.SortTableByColumnName('category');
     }
   }
-  sortArr(colName: any) {
+
+  SortTableByColumnName(colName: any) {
     console.log("id");
     this.users.sort((a, b) => {
       a = a[colName].toLowerCase();
       b = b[colName].toLowerCase();
-      return a.localeCompare(b) * this.sortDir;
+      return a.localeCompare(b) * this.sortDirection;
     });
   }
+
   ngOnDestroy(): void {
     this.cookiesData.unsubscribe();
   }
