@@ -27,6 +27,7 @@ export class AppComponent  {
   onSortClick(event) {
     let target = event.currentTarget,
       classList = target.classList;
+    console.log("sortclick", target);
 
     if (classList.contains('fa-chevron-up')) {
       classList.remove('fa-chevron-up');

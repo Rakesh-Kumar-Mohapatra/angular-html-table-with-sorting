@@ -6,14 +6,23 @@ p {
   width: 100%;
   text-align: left;
 }
-.mytable thead tr{
+.mytable thead th{
   background: cyan;
-  min-height: 30px;
+  min-height: 90px;
+  padding: 15px;
+  font-size: 18px;
+}
+.mytable tbody td{
+  background:lightgrey;
+  border-bottom: 2px solid grey;
+  min-height: 90px;
+  padding: 15px;
   font-size: 18px;
 }
 .mytable tr{
   background: #fafafa;
   border-bottom: 1px solid #ccc;
+  padding: 95px;
 }
 .my-icon{
   font-size: 14px;
