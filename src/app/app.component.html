@@ -1,4 +1,18 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<table class="mytable">
+<thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Product Name<i (click)="onSortClick($event)" class="my-icon fa fa-chevron-up"></i></th>
+    <th scope="col">Price</th>
+    <th scope="col">Category</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let obj of users; let i=index;">
+    <th scope="row">{{i}}</th>
+    <td>{{obj.name}}</td>
+    <td>{{obj.price}}</td>
+    <td>{{obj.category}}</td>
+  </tr>
+</tbody>
+</table>
